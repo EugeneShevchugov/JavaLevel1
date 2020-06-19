@@ -2,8 +2,9 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        // first task
-        int[] zeroOne = new int[]{0, 1, 1, 1, 0, 0, 1, 0, 1, 0};
+    }
+
+    public static void changeZeroToOne(int[] zeroOne) {
         for (int i = 0; i < zeroOne.length; i++) {
             if (zeroOne[i] == 0) {
                 zeroOne[i] = 1;
@@ -11,20 +12,23 @@ public class Main {
                 zeroOne[i] = 0;
             }
         }
-        // second task
-        int[] eightSize = new int[8];
+    }
+
+    public static void fillArray(int[] eightSize) {
         for (int i = 0, j = 0; i < 8; i++, j += 3) {
             eightSize[i] = j;
         }
-        // third task
-        int[] third = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+    }
+
+    public static void ifSixMultiplyByTwo(int[] third) {
         for (int i = 0; i < third.length; i++) {
             if (third[i] < 6) {
                 third[i] *= 2;
             }
         }
-        // fourth task
-        int[][] fourth = new int[][]{{2, 2, 3}, {2, 2, 3}, {2, 2, 3}};
+    }
+
+    public static void changeDiagonale(int[][] fourth) {
         for (int i = 0; i < fourth.length; i++) {
             for (int j = 0; j < fourth.length; j++) {
                 if (i == j) {
@@ -32,8 +36,9 @@ public class Main {
                 }
             }
         }
-        // five task
-        int[] five = new int[]{1, 5, 3, 10, 29, 15, 100, 209};
+    }
+
+    public static void findMinMax(int[] five) {
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
         for (int value : five) {
@@ -44,11 +49,8 @@ public class Main {
                 min = value;
             }
         }
-        System.out.println(checkBalance(new int[]{2, 2, 2, 1, 2, 2, 10, 1}));
-        System.out.println(checkBalance(new int[]{1, 1, 1, 2, 1}));
-        System.out.println(Arrays.toString(move(new int[]{1, 2, 3, 4}, 3)));
-        System.out.println(Arrays.toString(move(new int[]{1, 2, 3, 4}, -3)));
     }
+
     // I am not sure about this solution, six task
     public static boolean checkBalance(int[] array) {
         if (array.length <= 1) return false;
