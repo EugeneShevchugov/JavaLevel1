@@ -11,7 +11,7 @@ public class TicTacToe {
         char playerChar = 'X';
         char computerChar = 'O';
         char emptyChar = '-';
-        int SIZE = 5;
+        int SIZE = 3;
         char[][] field = new char[SIZE][SIZE];
         Scanner scanner = new Scanner(System.in);
         while (isGameOver) {
@@ -108,7 +108,15 @@ public class TicTacToe {
     }
 
     public static boolean computerThinking(char[][] field, int SIZE, char sign) {
-        int row = checkWinHorizontal('X', field, SIZE);
+        int row = checkWinHorizontal('O', field, SIZE);
+        if (thinkHorizontal(field, SIZE, sign, row)) {
+            return true;
+        }
+        row = checkWinVertical('O', field, SIZE);
+        if (thinkVertical(field, SIZE, sign, row)) {
+            return true;
+        }
+        row = checkWinHorizontal('X', field, SIZE);
         if (thinkHorizontal(field, SIZE, sign, row)) {
             return true;
         }
@@ -117,13 +125,13 @@ public class TicTacToe {
     }
 
     public static boolean thinkHorizontal(char[][] field, int SIZE, char sign, int row) {
-        int countX = countDiagonalX(field, SIZE, row);
+        int countX = countDiagonalSign(field, SIZE, row, sign);
         if (countX != SIZE - 1) return false;
         return blockHorizontal(field, SIZE, row, sign);
     }
 
     public static boolean thinkVertical(char[][] field, int SIZE, char sign, int row) {
-        int countX = countVerticalX(field, SIZE, row);
+        int countX = countVerticalSign(field, SIZE, row, sign);
         if (countX != SIZE - 1) return false;
         return blockVertical(field, SIZE, row, sign);
     }
@@ -150,20 +158,20 @@ public class TicTacToe {
         return false;
     }
 
-    public static int countDiagonalX(char[][] field, int SIZE, int row) {
+    public static int countDiagonalSign(char[][] field, int SIZE, int row, char sign) {
         int count = 0;
         for (int j = 0; j < SIZE && row < SIZE; j++) {
-            if (field[row][j] == 'X') {
+            if (field[row][j] == sign) {
                 count++;
             }
         }
         return count;
     }
 
-    public static int countVerticalX(char[][] field, int SIZE, int row) {
+    public static int countVerticalSign(char[][] field, int SIZE, int row, char sign) {
         int count = 0;
         for (int i = 0; i < SIZE && row < SIZE; i++) {
-            if (field[i][row] == 'X') {
+            if (field[i][row] == sign) {
                 count++;
             }
         }
