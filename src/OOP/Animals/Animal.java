@@ -17,4 +17,7 @@ public abstract class Animal {
 
     public abstract void jump(double value);
 
+    protected static double dispersion(double left, double right) {
+        return (Math.random() * (right - left) + left);
+    }
 }

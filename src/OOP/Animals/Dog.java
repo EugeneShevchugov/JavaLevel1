@@ -2,7 +2,7 @@ package OOP.Animals;
 
 public class Dog extends Animal {
     public Dog() {
-        super(0.5, 500, 10);
+        super(dispersion(0.1, 0.8), dispersion(200, 701), dispersion(5, 16));
     }
 
     @Override
