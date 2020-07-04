@@ -1,8 +1,8 @@
 package OOP.Animals;
 
-public class Cat extends Animal {
-    public Cat() {
-        super(2, 200, 0);
+public class Dog extends Animal {
+    public Dog() {
+        super(0.5, 500, 10);
     }
 
     @Override
@@ -12,7 +12,7 @@ public class Cat extends Animal {
 
     @Override
     public void swim(double value) {
-        System.out.println(false);
+        System.out.println(value <= maxSwim);
     }
 
     @Override
