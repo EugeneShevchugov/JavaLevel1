@@ -1,4 +1,4 @@
-package OOP;
+package OOP.Employee;
 
 public class Employee {
     private String name;
