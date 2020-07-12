@@ -27,7 +27,9 @@ public class ButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String lastCommand = e.getActionCommand();
         JButton jButton = (JButton) e.getSource();
-        checkStart(lastCommand);
+        if (checkStart(lastCommand)) {
+            return;
+        }
         switch (jButton.getText()) {
             case "+":
                 calculate(Double.parseDouble(String.valueOf(getBetween())));
@@ -57,17 +59,17 @@ public class ButtonListener implements ActionListener {
         }
     }
 
-    private void checkStart(String cmd) {
+    private boolean checkStart(String cmd) {
         if (!start) {
-            if (cmd.equals("*") || cmd.equals("/")) {
-                answer = 1;
-            }
             start = true;
             textField.setText(String.valueOf(answer));
             command = cmd;
-            calculate(Double.parseDouble(String.valueOf(getBetween())));
+            answer = getBetween();
+            setBetween(0);
             textField.setText("");
+            return true;
         }
+        return false;
     }
 
     private void calculate(double x) {
