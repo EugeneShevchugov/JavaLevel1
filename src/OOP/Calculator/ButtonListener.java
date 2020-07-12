@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 
 public class ButtonListener implements ActionListener {
     private final JTextField textField;
-    private String command = "";
-    private double bRes = 0; // промежуточный результат
+    private String command;
+    private double between = 0; // промежуточный результат
     private double answer;
     private boolean start = false;
 
-    public double getbRes() {
-        return bRes;
+    public double getBetween() {
+        return between;
     }
 
-    public void setbRes(double bRes) {
-        this.bRes = bRes;
+    public void setBetween(double between) {
+        this.between = between;
     }
 
     public ButtonListener(JTextField textField) {
@@ -27,67 +27,70 @@ public class ButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String lastCommand = e.getActionCommand();
         JButton jButton = (JButton) e.getSource();
-        if (!start) {
-            if (lastCommand.equals("*") || lastCommand.equals("/")) {
-                answer = 1;
-            }
-            start = true;
-            textField.setText(String.valueOf(answer));
-            command = lastCommand;
-            calculate(Double.parseDouble(String.valueOf(getbRes())));
-            textField.setText("");
-            return;
-        }
+        checkStart(lastCommand);
         switch (jButton.getText()) {
             case "+":
-                calculate(Double.parseDouble(String.valueOf(getbRes())));
+                calculate(Double.parseDouble(String.valueOf(getBetween())));
                 command = "+";
                 textField.setText("");
                 break;
             case "-":
-                calculate(Double.parseDouble(String.valueOf(getbRes())));
+                calculate(Double.parseDouble(String.valueOf(getBetween())));
                 command = "-";
                 textField.setText("");
                 break;
             case "*":
-                calculate(Double.parseDouble(String.valueOf(getbRes())));
+                calculate(Double.parseDouble(String.valueOf(getBetween())));
                 command = "*";
                 textField.setText("");
                 break;
             case "/":
-                calculate(Double.parseDouble(String.valueOf(getbRes())));
+                calculate(Double.parseDouble(String.valueOf(getBetween())));
                 command = "/";
                 textField.setText("");
                 break;
             case "=":
-                calculate(Double.parseDouble(String.valueOf(getbRes())));
+                calculate(Double.parseDouble(String.valueOf(getBetween())));
                 this.textField.setText(String.valueOf(answer));
                 command = "";
                 break;
         }
     }
 
-    public void calculate(double x) {
+    private void checkStart(String cmd) {
+        if (!start) {
+            if (cmd.equals("*") || cmd.equals("/")) {
+                answer = 1;
+            }
+            start = true;
+            textField.setText(String.valueOf(answer));
+            command = cmd;
+            calculate(Double.parseDouble(String.valueOf(getBetween())));
+            textField.setText("");
+        }
+    }
+
+    private void calculate(double x) {
         switch (command) {
             case "+":
                 answer += x;
-                setbRes(0);
+                setBetween(0);
                 break;
             case "-":
                 answer -= x;
-                setbRes(0);
+                setBetween(0);
                 break;
             case "*":
                 answer *= x;
-                setbRes(0);
+                setBetween(0);
                 break;
             case "/":
                 answer /= x;
-                setbRes(0);
+                setBetween(0);
                 break;
             case "=":
                 answer = x;
-                setbRes(0);
+                setBetween(0);
                 break;
         }
         textField.setText("" + answer);

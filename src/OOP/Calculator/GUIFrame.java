@@ -32,7 +32,7 @@ public class GUIFrame extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     textField.setText(textField.getText() + jButton.getText());
-                    buttonListener.setbRes(buttonListener.getbRes() * 10 + Double.parseDouble(jButton.getText()));
+                    buttonListener.setBetween(buttonListener.getBetween() * 10 + Double.parseDouble(jButton.getText()));
                 }
             });
             add(jButton);
